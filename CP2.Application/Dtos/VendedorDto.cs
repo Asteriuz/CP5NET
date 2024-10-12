@@ -29,34 +29,35 @@ namespace CP2.Application.Dtos
         public VendedorDtoValidation()
         {
             RuleFor(v => v.Nome)
-                .NotEmpty().WithMessage("Nome é obrigatório.")
-                .Length(2, 100).WithMessage("O Nome deve ter entre 2 e 100 caracteres.");
+                .NotEmpty().WithMessage("O nome deve ser preenchido.")
+                .Length(3, 100).WithMessage("O nome deve ter entre 3 e 100 caracteres.");
 
             RuleFor(v => v.Email)
-                .NotEmpty().WithMessage("Email é obrigatório.")
-                .EmailAddress().WithMessage("Email deve ser válido.");
+                .NotEmpty().WithMessage("O e-mail não pode estar vazio.")
+                .EmailAddress().WithMessage("Insira um e-mail válido.");
 
             RuleFor(v => v.Telefone)
-                .NotEmpty().WithMessage("Telefone é obrigatório.")
-                .Matches(@"^\(\d{2}\) \d{5}-\d{4}$").WithMessage("Telefone deve estar no formato (XX) XXXXX-XXXX.");
+                .NotEmpty().WithMessage("O telefone é necessário.")
+                .Matches(@"^\(\d{2}\) \d{5}-\d{4}$").WithMessage("Formato do telefone deve ser (XX) XXXXX-XXXX.");
 
             RuleFor(v => v.DataNascimento)
-                .NotEmpty().WithMessage("Data de nascimento é obrigatória.")
-                .LessThan(DateTime.Now).WithMessage("Data de nascimento deve ser anterior à data atual.");
+                .NotEmpty().WithMessage("A data de nascimento é essencial.")
+                .LessThan(DateTime.Now).WithMessage("A data de nascimento deve ser anterior à data atual.");
 
             RuleFor(v => v.Endereco)
-                .NotEmpty().WithMessage("Endereço é obrigatório.");
+                .NotEmpty().WithMessage("O endereço deve ser informado.");
 
             RuleFor(v => v.DataContratacao)
-                .NotEmpty().WithMessage("Data de contratação é obrigatória.")
-                .GreaterThan(DateTime.Now.AddYears(-10)).WithMessage("Data de contratação deve ser nos últimos 10 anos.");
+                .NotEmpty().WithMessage("A data de contratação é obrigatória.")
+                .GreaterThan(DateTime.Now.AddYears(-5)).WithMessage("A data de contratação deve ser nos últimos 5 anos.");
 
             RuleFor(v => v.ComissaoPercentual)
-                .GreaterThan(0).WithMessage("Percentual de comissão deve ser maior que zero.")
-                .LessThanOrEqualTo(100).WithMessage("Percentual de comissão deve ser no máximo 100.");
+                .GreaterThan(0).WithMessage("O percentual de comissão deve ser maior que zero.")
+                .LessThanOrEqualTo(50).WithMessage("O percentual de comissão não pode exceder 50.");
 
             RuleFor(v => v.MetaMensal)
-                .GreaterThan(0).WithMessage("Meta mensal deve ser maior que zero.");
+                .GreaterThan(0).WithMessage("A meta mensal deve ser positiva.");
         }
+
     }
 }

@@ -27,23 +27,20 @@ namespace CP2.Application.Dtos
         public FornecedorDtoValidation()
         {
             RuleFor(f => f.Nome)
-                .NotEmpty().WithMessage("Nome é obrigatório.")
-                .Length(2, 100).WithMessage("O Nome deve ter entre 2 e 100 caracteres.");
+                .NotEmpty().WithMessage("O nome do fornecedor é obrigatório.")
+                .Length(3, 100).WithMessage("O nome deve ter entre 3 e 100 caracteres.");
 
             RuleFor(f => f.CNPJ)
-                .NotEmpty().WithMessage("CNPJ é obrigatório.")
-                .Matches(@"^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$").WithMessage("CNPJ deve estar no formato XX.XXX.XXX/XXXX-XX.");
-
-            RuleFor(f => f.Endereco)
-                .NotEmpty().WithMessage("Endereço é obrigatório.");
+                .NotEmpty().WithMessage("O CNPJ é obrigatório.")
+                .Matches(@"^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$").WithMessage("O CNPJ deve estar no formato XX.XXX.XXX/XXXX-XX.");
 
             RuleFor(f => f.Telefone)
-                .NotEmpty().WithMessage("Telefone é obrigatório.")
-                .Matches(@"^\(\d{2}\) \d{5}-\d{4}$").WithMessage("Telefone deve estar no formato (XX) XXXXX-XXXX.");
+                .NotEmpty().WithMessage("O telefone é necessário.")
+                .Matches(@"^\(\d{2}\) \d{5}-\d{4}$").WithMessage("O telefone deve estar no formato (XX) XXXXX-XXXX.");
 
             RuleFor(f => f.Email)
-                .NotEmpty().WithMessage("Email é obrigatório.")
-                .EmailAddress().WithMessage("Email deve ser válido.");
+                .NotEmpty().WithMessage("O e-mail é obrigatório.")
+                .EmailAddress().WithMessage("Insira um e-mail válido.");
         }
     }
 }
